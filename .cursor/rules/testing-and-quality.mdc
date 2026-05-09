@@ -1,0 +1,32 @@
+---
+description: "Testing + quality gates (Laravel feature tests, critical auction flows)"
+globs:
+  - "**/*.php"
+  - "**/*.ts"
+  - "**/*.tsx"
+  - "**/*.js"
+  - "**/*.jsx"
+---
+
+## Backend testing (Laravel)
+- For any new API route, add at least one **Feature test**.
+- Critical flows MUST have tests:
+  - register/login/logout
+  - create listing
+  - start/end auction
+  - place bid (accept)
+  - place bid (reject: too low, after end, self-bid)
+  - concurrent bid behavior (at least one test that proves atomicity/locking)
+
+## Frontend testing (lightweight by default)
+- If a testing setup exists, add smoke tests for:
+  - listing details renders
+  - bidding form validates and handles errors
+
+## Quality gates
+- No secret files committed (`.env`, keys).
+- Keep API error responses consistent and documented.
+- Every PR/change should include a brief manual test plan:
+  - what URL/page to open
+  - what action to take
+  - expected outcome

@@ -1,0 +1,10 @@
+/* Intentionally minimal.
+   We keep global theme in index.css and rely on Bootstrap for layout. */
+
+.sh-hero {
+  background:
+    radial-gradient(600px 300px at 15% 15%, rgba(124, 58, 237, 0.18), transparent 60%),
+    radial-gradient(600px 300px at 85% 0%, rgba(168, 85, 247, 0.12), transparent 60%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.8), rgba(250, 247, 255, 0.6));
+  border: 1px solid rgba(15, 23, 42, 0.08);
+}

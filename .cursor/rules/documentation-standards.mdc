@@ -1,0 +1,30 @@
+---
+description: "Documentation standards (README, API docs, auction rules)"
+globs:
+  - "**/*"
+---
+
+## Documentation is part of the deliverable
+If a change affects setup, API contracts, DB schema, or user-facing flows, update documentation in the same change.
+
+## Required docs (create when codebase appears)
+- `README.md`
+  - prerequisites (PHP, Composer, Node)
+  - setup steps
+  - environment variables list (names only, no secrets)
+  - run commands (backend + frontend)
+  - local URLs
+- `API.md` or `docs/openapi.yaml`
+  - auth method (Sanctum cookie vs token)
+  - endpoint list with request/response examples
+  - standard error shape
+- `docs/auction-rules.md`
+  - min increment rules
+  - when auctions start/end
+  - tie-breaking behavior (if two bids same time)
+  - outbid notification behavior (real-time vs polling)
+
+## Writing style
+- Use clear, step-by-step instructions.
+- Prefer copy-pastable commands.
+- Keep docs consistent with the repo’s actual scripts and ports.

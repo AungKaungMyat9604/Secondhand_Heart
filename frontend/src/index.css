@@ -1,0 +1,125 @@
+:root {
+  --sh-accent: #7c3aed; /* purple */
+  --sh-accent-2: #a855f7;
+  --sh-bg0: #ffffff;
+  --sh-bg1: #faf7ff;
+  --sh-text: #0f172a;
+  --sh-muted: #64748b;
+  --sh-border: rgba(15, 23, 42, 0.08);
+  --sh-shadow: 0 10px 30px rgba(2, 6, 23, 0.08);
+}
+
+html,
+body {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  color: var(--sh-text);
+  background-color: var(--sh-bg0);
+  background:
+    radial-gradient(1000px 600px at 10% -10%, rgba(124, 58, 237, 0.16), transparent 55%),
+    radial-gradient(900px 500px at 90% 0%, rgba(168, 85, 247, 0.10), transparent 55%),
+    linear-gradient(180deg, var(--sh-bg1), var(--sh-bg0));
+  background-attachment: scroll;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Prevent scroll “jank” on some browsers when painting gradients */
+html {
+  overflow-y: scroll;
+}
+
+/* Subtle global polish without fighting Bootstrap */
+a {
+  color: var(--sh-accent);
+}
+
+.text-muted {
+  color: var(--sh-muted) !important;
+}
+
+.card {
+  border-color: var(--sh-border);
+  box-shadow: 0 1px 0 rgba(2, 6, 23, 0.03);
+}
+
+.card.shadow-soft {
+  box-shadow: var(--sh-shadow);
+}
+
+/* Modern “glass” surfaces */
+.sh-glass {
+  background: rgba(255, 255, 255, 0.72);
+  border: 1px solid rgba(15, 23, 42, 0.08);
+  backdrop-filter: blur(10px);
+}
+
+.sh-hero {
+  background:
+    radial-gradient(900px 520px at 15% 10%, rgba(124, 58, 237, 0.22), transparent 55%),
+    radial-gradient(750px 460px at 85% 20%, rgba(168, 85, 247, 0.16), transparent 55%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.64));
+}
+
+.sh-stat-number {
+  font-variant-numeric: tabular-nums;
+  letter-spacing: -0.02em;
+}
+
+.sh-icon-pill {
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(124, 58, 237, 0.10);
+  border: 1px solid rgba(124, 58, 237, 0.18);
+  color: rgba(124, 58, 237, 0.92);
+}
+
+.btn-primary {
+  --bs-btn-bg: var(--sh-accent);
+  --bs-btn-border-color: var(--sh-accent);
+  --bs-btn-hover-bg: #6d28d9;
+  --bs-btn-hover-border-color: #6d28d9;
+  --bs-btn-active-bg: #5b21b6;
+  --bs-btn-active-border-color: #5b21b6;
+}
+
+.btn-outline-primary {
+  --bs-btn-color: var(--sh-accent);
+  --bs-btn-border-color: rgba(124, 58, 237, 0.35);
+  --bs-btn-hover-bg: rgba(124, 58, 237, 0.08);
+  --bs-btn-hover-border-color: rgba(124, 58, 237, 0.55);
+  --bs-btn-hover-color: var(--sh-accent);
+}
+
+.badge.text-bg-secondary {
+  background: rgba(15, 23, 42, 0.08) !important;
+  color: rgba(15, 23, 42, 0.72) !important;
+}
+
+/* Reusable helpers */
+.sh-aspect-16x9 {
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+}
+
+.sh-line-clamp-2 {
+  display: -webkit-box;
+  line-clamp: 2;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+@media (min-width: 992px) {
+  .sh-sticky-lg {
+    position: sticky;
+    top: 16px;
+  }
+}

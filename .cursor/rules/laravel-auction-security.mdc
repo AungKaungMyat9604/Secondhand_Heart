@@ -1,0 +1,42 @@
+---
+description: "Laravel security rules for auction/bidding (authz, rate limiting, atomic bids)"
+globs:
+  - "**/*.php"
+---
+
+## Authentication
+- Prefer **Laravel Sanctum** for SPA auth (cookie-based) unless the repo explicitly uses tokens/JWT.
+- Never log secrets. Never commit `.env`.
+
+## Authorization (required)
+- Every endpoint that mutates state MUST have explicit authorization:
+  - listing create/update/delete
+  - auction create/start/end/cancel
+  - bid placement
+  - admin actions (approve/remove listings, manage users)
+- Implement via **Policies/Gates**; controllers call `authorize(...)` (or middleware) consistently.
+
+## Input validation (required)
+- Use `FormRequest` for non-trivial endpoints.
+- Validate money/bid amounts as numeric with clear constraints (min, max, precision).
+
+## Atomic bid placement (required)
+- Placing a bid MUST be atomic:
+  - wrap in a DB transaction
+  - lock the auction row (or relevant row) to prevent race conditions
+  - re-check auction status/time inside the lock
+  - enforce minimum increment and “cannot bid on your own listing”
+- Return a conflict response when outbid/race happens (e.g. 409) with the latest highest bid.
+
+## Rate limiting & abuse prevention
+- Rate limit bid placement routes (per-user + per-IP).
+- Add server-side checks to prevent:
+  - bids after auction end
+  - repeated identical bids in very short windows (optional)
+
+## Admin panel safety
+- Admin routes must be behind `auth` + role/permission middleware and policy checks.
+- Log admin actions (who did what, when) for moderation features.
+
+## Data privacy & uploads
+- For listing images: validate content type/size; store in non-public disk or sanitized public path; never trust client filenames.

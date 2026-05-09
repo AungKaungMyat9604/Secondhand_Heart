@@ -1,0 +1,32 @@
+---
+description: "React + Bootstrap UI standards (accessibility, consistency, API usage)"
+globs:
+  - "**/*.tsx"
+  - "**/*.jsx"
+  - "**/*.ts"
+  - "**/*.js"
+---
+
+## UI principles
+- Bootstrap-first: use Bootstrap utilities/components before writing custom CSS.
+- Keep forms accessible: labels, `aria-*` where needed, visible error text.
+- Loading/empty/error states are mandatory for pages that call APIs.
+
+## Component conventions
+- Prefer small, composable components.
+- Avoid deeply nested prop drilling; use context sparingly and only for cross-cutting state (auth/session).
+- Keep formatting consistent with the repo’s formatter once present.
+
+## Data fetching
+- Centralize API calls in `src/api/**` (or one module).
+- Map backend validation errors into field-level UI errors.
+- Prevent duplicate bid submissions:
+  - disable bid button while request is in flight
+  - show latest highest bid on conflict response
+
+## Auction UI specifics
+- Always display:
+  - current highest bid
+  - auction end time (and local time formatting)
+  - “You are currently highest bidder” state (based on backend response)
+- Do not trust client-side timers for rules; treat them as display only.
