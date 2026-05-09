@@ -28,6 +28,7 @@ cp .env.example .env
 php artisan key:generate
 php artisan migrate
 php artisan serve
+php -S 127.0.0.1:8000 -t public
 ```
 
 API default URL: `http://127.0.0.1:8000`
